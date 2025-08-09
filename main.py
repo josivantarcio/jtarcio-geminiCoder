@@ -44,7 +44,7 @@ def ask_gemini(question, context, filename):
         genai.configure(api_key=api_key)
 
         prompt = f"""
-        Você é um assistente de programação expert. Sua tarefa é analisar um pedido do usuário, o histórico da conversa e o contexto de um projeto para propor a próxima ação.
+        Você é um sistema de análise de código. Sua tarefa é analisar um pedido do usuário, o histórico da conversa e o contexto de um projeto para propor a próxima ação.
 
         Analise o seguinte contexto:
         --- INÍCIO DO CONTEXTO ---
@@ -106,7 +106,7 @@ def main():
         exit(2)
 
     context = build_context_from_path(args.path)
-    print("Analisando o contexto e preparando a resposta... 🤖")
+    print("Analisando o contexto e preparando a resposta...")
     ai_response = ask_gemini(args.solicitacao, context, os.path.basename(args.path))
 
     if ai_response.get("action") == "CREATE_FILE":
@@ -126,9 +126,9 @@ def main():
             os.makedirs(os.path.dirname(filepath), exist_ok=True)
             with open(filepath, 'w', encoding='utf-8') as f:
                 f.write(new_content)
-            console.print(f"\n[bold green]✅ Arquivo '{filepath}' criado com sucesso![/bold green]")
+            console.print(f"\n[bold green]Arquivo '{filepath}' criado com sucesso![/bold green]")
         else:
-            console.print("\n[bold red]❌ Criação de arquivo descartada.[/bold red]")
+            console.print("\n[bold red]Criação de arquivo descartada.[/bold red]")
     elif ai_response.get("action") == "EDIT_FILE":
         filepath = ai_response.get("path", args.path)
         try:
@@ -148,9 +148,9 @@ def main():
         if confirm.lower() == 's':
             with open(filepath, 'w', encoding='utf-8') as f:
                 f.write(new_content)
-            print(f"\n✅ Arquivo '{filepath}' atualizado!")
+            print(f"\nArquivo '{filepath}' atualizado!")
         else:
-            print("\n❌ Alteração descartada.")
+            print("\nAlteração descartada.")
     elif ai_response.get("action") == "RUN_COMMAND":
         command = ai_response.get("command", "")
         explanation = ai_response.get("explanation", "")
@@ -161,11 +161,11 @@ def main():
         if confirm.lower() == 's':
             try:
                 subprocess.run(command, shell=True, check=True)
-                print(f"\n✅ Comando executado!")
+                print(f"\nComando executado!")
             except Exception as e:
-                print(f"\n❌ Erro ao executar comando: {e}")
+                print(f"\nErro ao executar comando: {e}")
         else:
-            print("\n❌ Execução descartada.")
+            print("\nExecução descartada.")
     else:
         print("\n--- Resposta do Gemini Coder ---")
         print(ai_response.get("answer", ""))

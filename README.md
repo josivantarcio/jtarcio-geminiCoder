@@ -1,43 +1,49 @@
-# Gemini Coder
+# Code Analyzer CLI
 
-Assistente de programação via linha de comando usando Google Gemini.
+Ferramenta de análise e manipulação de código via linha de comando usando Google Gemini API.
 
 ## Instalação
 
-1. Instale o Python 3:
+1. Clone o repositório:
    ```bash
-   sudo apt update && sudo apt install -y python3 python-is-python3
+   git clone https://github.com/seu-usuario/code-analyzer-cli.git
+   cd code-analyzer-cli
    ```
+
 2. Instale as dependências:
    ```bash
-   pip3 install --user --break-system-packages google-generativeai python-dotenv rich gitignore_parser
+   pip3 install -r requirements.txt
    ```
-3. Configure o alias global (adicione ao final do seu `~/.bashrc`):
-   ```bash
-   echo 'alias gemini="python3 /home/josivan/ws/gemini-coder/main.py --path /home/josivan/ws/gemini-coder"' >> ~/.bashrc && source ~/.bashrc
-   ```
-4. Adicione sua chave Gemini API ao arquivo `.env`:
+
+3. Configure sua API key no arquivo `.env`:
    ```env
    GEMINI_API_KEY="SUA_CHAVE_AQUI"
    ```
 
 ## Uso
 
-De qualquer pasta do terminal:
+Execute o script:
 ```bash
-gemini "sua pergunta ou solicitação aqui"
+python main.py "sua solicitação aqui"
 ```
 Exemplo:
 ```bash
-gemini "Crie um arquivo de teste para a função 'somar' no exemplo.py"
+python main.py "Crie um arquivo de teste para a função 'somar' no exemplo.py"
 ```
 
 ## Funcionalidades
-- Perguntas sobre código
+
+- Análise de código e projetos
 - Criação e edição de arquivos
 - Sugestão e execução de comandos
-- Respeita .gitignore
+- Respeita arquivos .gitignore
 - Confirmação antes de qualquer alteração
+- Interface de linha de comando simples
 
-## Repositório
-https://github.com/josivantarcio/jtarcio-geminiCoder.git
+## Licença
+
+MIT License - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
