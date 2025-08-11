@@ -19,7 +19,7 @@ Uma ferramenta poderosa de análise e manipulação de código via linha de coma
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/gemini-coder.git
+   git clone https://github.com/josivantarcio/jtarcio-geminiCoder.git
    cd gemini-coder
    ```
 
