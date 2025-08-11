@@ -28,3 +28,8 @@ typing-inspection==0.4.1
 typing_extensions==4.14.1
 uritemplate==4.2.0
 urllib3==2.5.0
+
+# New dependencies for enhanced features
+rich>=13.0.0
+gitignore-parser>=0.1.0
+textual>=0.45.0
