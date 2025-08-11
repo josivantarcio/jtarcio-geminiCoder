@@ -37,7 +37,17 @@ class AnalyzeTool(Tool):
             "required": ["file_path"]
         }
     
-    def execute(self, file_path: str, include_docstrings: bool = True) -> ToolResult:
+    def execute(self, file_path: str = None, files: List[str] = None, include_docstrings: bool = True) -> ToolResult:
+        # Compatibilidade: aceitar tanto 'files' quanto 'file_path'
+        if files and not file_path:
+            file_path = files[0] if files else None
+        
+        if not file_path:
+            return ToolResult(
+                success=False,
+                content=None,
+                error="Parâmetro 'file_path' é obrigatório"
+            )
         try:
             if not os.path.exists(file_path):
                 return ToolResult(

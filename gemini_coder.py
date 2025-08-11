@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Gemini Coder - Ferramenta de análise e manipulação de código via linha de comando.
-Versão melhorada com sistema de ferramentas robusto, modo interativo e gerenciamento de contexto.
+Versão 1.1.0 - Sistema de ferramentas robusto, modo interativo e gerenciamento de contexto.
 """
 
 import sys

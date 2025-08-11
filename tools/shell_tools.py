@@ -42,7 +42,13 @@ class BashTool(Tool):
             "required": ["command"]
         }
     
-    def execute(self, command: str, cwd: str = ".", timeout: int = 30) -> ToolResult:
+    def execute(self, command: str = None, cwd: str = ".", timeout: int = 30) -> ToolResult:
+        if not command:
+            return ToolResult(
+                success=False,
+                content=None,
+                error="Parâmetro 'command' é obrigatório"
+            )
         try:
             # Usar shell=True para comandos complexos, mas validar entrada
             if any(dangerous in command for dangerous in ['rm -rf /', 'rm -rf *', 'format', 'del /f /s /q']):

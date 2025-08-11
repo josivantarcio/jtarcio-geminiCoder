@@ -53,8 +53,18 @@ class GrepTool(Tool):
             "required": ["pattern"]
         }
     
-    def execute(self, pattern: str, path: str = ".", file_pattern: str = "*", 
+    def execute(self, pattern: str = None, files: List[str] = None, path: str = ".", file_pattern: str = "*", 
                 ignore_case: bool = False, line_numbers: bool = True) -> ToolResult:
+        # Compatibilidade: aceitar tanto 'files' quanto 'pattern'
+        if files and not pattern:
+            pattern = files[0] if files else None
+        
+        if not pattern:
+            return ToolResult(
+                success=False,
+                content=None,
+                error="Parâmetro 'pattern' é obrigatório"
+            )
         try:
             # Usar ripgrep se disponível, senão grep padrão
             cmd = []

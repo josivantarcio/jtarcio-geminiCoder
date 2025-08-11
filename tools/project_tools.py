@@ -304,7 +304,13 @@ class BackupTool(Tool):
             "required": ["files"]
         }
     
-    def execute(self, files: List[str], backup_dir: str = ".backups") -> ToolResult:
+    def execute(self, files: List[str] = None, backup_dir: str = ".backups") -> ToolResult:
+        if not files:
+            return ToolResult(
+                success=False,
+                content=None,
+                error="Parâmetro 'files' é obrigatório"
+            )
         import shutil
         from datetime import datetime
         
